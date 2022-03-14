@@ -1,5 +1,10 @@
 <?php
-	
+    
+    if(isset($_COOKIE["DE3EmailCookie"]))
+        echo '<script type="text/javascript">
+                window.location = "https://de3-opdracht.000webhostapp.com/mainWeb/MainPage.html"
+              </script>';
+
     $host = "localhost";
     $username = "id18579870_data";
     $pass = ")F!d(2QcQt2dY" . "$" . "j0";
@@ -11,7 +16,7 @@
     }   
 
     $existingEmailFound = false;
-	if(isset($_POST["username"]) && isset($_POST["emailAddr"]) && isset($_POST["password"])){
+	if(isset($_POST["emailAddr"]) && isset($_POST["password"])){
 	    $email = $_POST["emailAddr"];
 	    $pass = $_POST["password"];
 	    $sql = "SELECT * FROM webUser";
@@ -37,14 +42,10 @@
     		}
     	} 
 
-	    if(!$existingEmailFound) {
-	        $sql = "INSERT INTO `webUser`(`username`,`email`, `pass`) VALUES('$email', '$pass')";
-     	    $tempConn->query($sql);
-	        $tempConn->close();
+	    if($existingEmailFound) {
+	        setcookie("DE3EmailCookie", $email, time() + (86400 * 36555));
+		    setcookie("DE3PasswordCookie", $pass);
 	    }
-
-		setcookie("DE3EmailCookie", $email, time() + (86400 * 36555));
-		setcookie("DE3PasswordCookie", $pass);
 
 		echo '<script type="text/javascript">
                 window.location = "https://de3-opdracht.000webhostapp.com/mainWeb/MainPage.html"
@@ -66,8 +67,7 @@
     <div class="text-center mt-5"> 
       <form style="max-width: 350px; margin: auto" method="post">
         <img class="mt-4 mb-4" src="images/logo.png" height="100">
-        <h1 class="mb-3 font-weight-normal">register</h1>
-        <input type="username" id="username" name="username" class="form-control mb-1" placeholder="Vul username hier in" required autofocus>
+        <h1 class="mb-3 font-weight-normal">login</h1>
         <input type="email" id="emailAddr" name="emailAddr" class="form-control mb-1" placeholder="Vul email hier in" required autofocus>
         <input type="password" id="password" name="password" class="form-control" placeholder="Vul password hier in">
         <div class="checkbox mt-3">
@@ -76,7 +76,7 @@
           </label>
         </div>
         <div class="mt-3">
-          <button class="btn btn-lg btn-primary">register</button>
+          <button class="btn btn-lg btn-primary">Login</button>
         </div>
       </form>
     </div>
