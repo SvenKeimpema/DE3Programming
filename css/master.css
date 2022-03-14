@@ -3,8 +3,13 @@ html {
   margin: auto;
 }
 
+body,html {
+  background-color: rgba(147, 150, 148, 0.66);
+}
+
 body {
   border: 1px solid black;
+  border-radius: 10px;
 }
 
 .headerImage {
@@ -18,4 +23,8 @@ body {
   border: 1px solid black;
   background-color: rgba(0, 0, 0, 0.56);
   font-size: 55px;
+}
+
+.textHeader {
+  font-weight: bold;
 }
