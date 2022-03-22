@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="./css/master.css">
     <link rel="stylesheet" href="./css/newsText.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title></title>
   </head>
@@ -19,15 +19,11 @@
        <?php
 
         $host = "localhost";
-        $username = "id18579870_base";
-        $pass = "DCdbLogin890!";
-        $dbname = "id18579870_comment";
+        $username = "root";
+        $pass = "";
+        $dbname = "de3database";
 
         $conn = mysqli_connect($host, $username, $pass, $dbname);
-
-        function str_contains($haystack, $needle) {
-            return $needle !== '' && mb_strpos($haystack, $needle) !== false;
-        }
 
         function strCheck($checkStr) {
             return !str_contains($checkStr, "label") && !str_contains($checkStr, "consent-placeholder__title") && !str_contains($checkStr, "beginnen met uploaden") && !str_contains($checkStr, "versturen") && !str_contains($checkStr, "adblocker") && !str_contains($checkStr, "class");
@@ -67,14 +63,8 @@
             }
         }
 
-        if(!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }else {
-            echo "connected!!";
-        }
 
-
-        if(isset($_POST["comment"])) {
+        if(isset($_POST["comment"]) && isset($_COOKIE["DE3UsernameCookie"])) {
             $comment = $_POST["comment"];
             $sql = "INSERT INTO cammond (username, comm) VALUES ('" . $_COOKIE["DE3UsernameCookie"] . "', '".$comment."')";
             if($conn->query($sql) === TRUE) {
@@ -117,11 +107,17 @@
             </div>
         </div>
     </div>
+    <?php
+    if(isset($_POST["comment"]) && !isset($_COOKIE["DE3UsernameCookie"])) {
+      echo "<h3> je moet eerst inloggen! </h3>";
+    }
+    ?>
+    <center>
      <?php
         $host = "localhost";
-        $username = "id18579870_base";
-        $pass = "DCdbLogin890!";
-        $dbname = "id18579870_comment";
+        $username = "root";
+        $pass = "";
+        $dbname = "de3database";
 
         $conn = @mysqli_connect($host, $username, $pass, $dbname);
 
@@ -136,6 +132,7 @@
 
       ?>
       <br><br>
+    </center>
     </div>
 
     <!-- popper & js -->

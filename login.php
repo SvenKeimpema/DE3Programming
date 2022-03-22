@@ -1,19 +1,19 @@
 <?php
-    
-    if(isset($_COOKIE["DE3EmailCookie"]))
+
+    if(!isset($_COOKIE["DE3EmailCookie"]))
         echo '<script type="text/javascript">
-                window.location = "https://de3-opdracht.000webhostapp.com/"
+                window.location = "./index.php"
               </script>';
 
     $host = "localhost";
-    $username = "id18579870_data";
-    $pass = ")F!d(2QcQt2dY" . "$" . "j0";
-    $dbname = "id18579870_de3base";
+    $username = "root";
+    $pass = "";
+    $dbname = "de3database";
     $tempConn = @mysqli_connect($host, $username, $pass, $dbname);
-	
+
 	if (!$tempConn) {
         die("Connection failed: " . mysqli_connect_error());
-    }   
+    }
 
     $existingEmailFound = false;
 	if(isset($_POST["emailAddr"]) && isset($_POST["password"])){
@@ -29,25 +29,25 @@
     			$tempConn->query($sql);
     			$index += 1;
     		}
-    	} 
-	
+    	}
+
 		$sql = "SELECT * FROM webUser";
 	    $result = $tempConn->query($sql);
 	    if ($result != null && $result->num_rows > 0) {
     		while($row = mysqli_fetch_assoc($result)) {
     			if($row["email"] == $email) {
-    			    setcookie("DE3UsernameCookie", $row["username"], time() + (86400 * 36555), "de3-opdracht.000webhostapp.com/");
+    			    setcookie("DE3UsernameCookie", $row["username"], time() + (86400 * 36555), "/");
     			    $existingEmailFound = true;
     			    break;
     			}
     		}
-    	} 
+    	}
 
 	    if($existingEmailFound) {
-		    setcookie("DE3EmailCookie", $email, time() + (86400 * 36555), "de3-opdracht.000webhostapp.com/");
-		    setcookie("DE3PasswordCookie", $pass, time() + (86400 * 36555), "de3-opdracht.000webhostapp.com/");
+		    setcookie("DE3EmailCookie", $email, time() + (86400 * 36555), "/");
+		    setcookie("DE3PasswordCookie", $pass, time() + (86400 * 36555), "/");
 		    echo '<script type="text/javascript">
-                window.location = "https://de3-opdracht.000webhostapp.com/"
+                window.location = "./"
               </script>';
     	    die();
 	    }
@@ -58,25 +58,29 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="cssFiles/style.css">
+    <link rel="stylesheet" href="css/loginStyle.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>testing</title>
   </head>
   <body>
-    <div class="text-center mt-5"> 
+    <div class="">
+      <a href="#" onclick="history.back()">Terug naar vorige pagina</a>
+    </div>
+    <div class="text-center mt-5">
       <form style="max-width: 350px; margin: auto" method="post">
         <img class="mt-4 mb-4" src="images/logo.png" height="100">
         <h1 class="mb-3 font-weight-normal">login</h1>
         <input type="email" id="emailAddr" name="emailAddr" class="form-control mb-1" placeholder="Vul email hier in" required autofocus>
         <input type="password" id="password" name="password" class="form-control" placeholder="Vul password hier in">
         <div class="checkbox mt-3">
-          <label>
-            <input type="checkbox" value="remember me"> Remember me
-          </label>
         </div>
         <div class="mt-3">
           <button class="btn btn-lg btn-primary">Login</button>
+        </div>
+        <div class="">
+          <p>om een account aan te maken <a href="./register.php">Klik hier!</a></p>
+
         </div>
       </form>
     </div>
