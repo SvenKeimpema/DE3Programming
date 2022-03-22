@@ -8,53 +8,7 @@
   </head>
   <body>
     <img class="headerImage" src="./images/F1Header.jpg">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
-      <div class="container-fluid">
-        <a class="navbar-brand">
-          <img src="./images/logo.png" width="50" height="50" role="img" alt="Boosted" loading="lazy">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./nieuws.html">Nieuws</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Teams
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="./teams/alfaromeo.html">Alfa Romeo</a></li>
-                <li><a class="dropdown-item" href="./teams/alphatauri.html">Alpha Tauri</a></li>
-                <li><a class="dropdown-item" href="./teams/alpine.html">Alpine</a></li>
-                <li><a class="dropdown-item" href="./teams/astonmartin.html">Aston Martin</a></li>
-                <li><a class="dropdown-item" href="./teams/ferrari.html">Ferrari</a></li>
-                <li><a class="dropdown-item" href="./teams/haas.html">Haas</a></li>
-                <li><a class="dropdown-item" href="./teams/mclaren.html">Mc Laren</a></li>
-                <li><a class="dropdown-item" href="./teams/mercedes.html">Mercedes</a></li>
-                <li><a class="dropdown-item" href="./teams/redbull.html">Red Bull</a></li>
-                <li><a class="dropdown-item" href="./teams/williams.html">Williams</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./kalender.html">F1 Kalender</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./login.html">Log in</a>
-            </li>
-          </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-primary" type="submit">Search</button>
-          </form>
-        </div>
-      </div>
-    </nav>
+    <?php include 'menu.php'; ?>
 
     <div class=""><br>
       <h2 style="text-align:center;">F1 kalender 2022</h2>
