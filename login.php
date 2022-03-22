@@ -2,7 +2,7 @@
     
     if(isset($_COOKIE["DE3EmailCookie"]))
         echo '<script type="text/javascript">
-                window.location = "https://de3-opdracht.000webhostapp.com/mainWeb/MainPage.html"
+                window.location = "https://de3-opdracht.000webhostapp.com/"
               </script>';
 
     $host = "localhost";
@@ -36,6 +36,7 @@
 	    if ($result != null && $result->num_rows > 0) {
     		while($row = mysqli_fetch_assoc($result)) {
     			if($row["email"] == $email) {
+    			    setcookie("DE3UsernameCookie", $row["username"], time() + (86400 * 36555), "de3-opdracht.000webhostapp.com/");
     			    $existingEmailFound = true;
     			    break;
     			}
@@ -43,14 +44,13 @@
     	} 
 
 	    if($existingEmailFound) {
-	        setcookie("DE3EmailCookie", $email, time() + (86400 * 36555));
-		    setcookie("DE3PasswordCookie", $pass);
-	    }
-
-		echo '<script type="text/javascript">
-                window.location = "https://de3-opdracht.000webhostapp.com/mainWeb/MainPage.html"
+		    setcookie("DE3EmailCookie", $email, time() + (86400 * 36555), "de3-opdracht.000webhostapp.com/");
+		    setcookie("DE3PasswordCookie", $pass, time() + (86400 * 36555), "de3-opdracht.000webhostapp.com/");
+		    echo '<script type="text/javascript">
+                window.location = "https://de3-opdracht.000webhostapp.com/"
               </script>';
-    	die();
+    	    die();
+	    }
 	}
 ?>
 <!doctype html>
