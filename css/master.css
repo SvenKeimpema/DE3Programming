@@ -28,3 +28,13 @@ body {
 .textHeader {
   font-weight: bold;
 }
+
+.excerpt {
+    font-weight: bold;
+}
+
+.image {
+    position: relative;
+    width: 100;
+    height: 600;
+}

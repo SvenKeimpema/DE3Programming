@@ -11,7 +11,9 @@
     }   
 
     $existingEmailFound = false;
+    $existingUsernameFound = false;
 	if(isset($_POST["username"]) && isset($_POST["emailAddr"]) && isset($_POST["password"])){
+	    $username = $_POST["username"];
 	    $email = $_POST["emailAddr"];
 	    $pass = $_POST["password"];
 	    $sql = "SELECT * FROM webUser";
@@ -33,21 +35,28 @@
     			if($row["email"] == $email) {
     			    $existingEmailFound = true;
     			    break;
+    			}else if(row["username"] == $username) {
+    			    
     			}
     		}
     	} 
 
-	    if(!$existingEmailFound) {
-	        $sql = "INSERT INTO `webUser`(`username`,`email`, `pass`) VALUES('$email', '$pass')";
-     	    $tempConn->query($sql);
+	    if(!$existingEmailFound && !$existingUsernameFound) {
+	        $sql = "INSERT INTO `webUser`(`username`,`email`, `pass`) VALUES('$username', '$email', '$pass')";
+     	    if ($tempConn->query($sql) === FALSE) {
+     	        echo $tempConn->error;
+     	    }
 	        $tempConn->close();
+	    }else {
+	        echo "username or email found!";
 	    }
-
-		setcookie("DE3EmailCookie", $email, time() + (86400 * 36555));
-		setcookie("DE3PasswordCookie", $pass);
+	    
+        setcookie("DE3UsernameCookie", $username, time() + (86400 * 36555), "de3-opdracht.000webhostapp.com/");
+		setcookie("DE3EmailCookie", $email, time() + (86400 * 36555), "de3-opdracht.000webhostapp.com/");
+		setcookie("DE3PasswordCookie", $pass, time() + (86400 * 36555), "de3-opdracht.000webhostapp.com/");
 
 		echo '<script type="text/javascript">
-                window.location = "https://de3-opdracht.000webhostapp.com/mainWeb/MainPage.html"
+                window.location = "https://de3-opdracht.000webhostapp.com/index.html"
               </script>';
     	die();
 	}

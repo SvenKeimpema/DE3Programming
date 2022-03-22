@@ -7,13 +7,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>testing</title>
+    
+    <link rel="stylesheet" href="cssFiles/UserStyle.css">
+    
   </head>
   <body>
     
     <div class="container-fluid">
         <div class"row">
             <div class="col-md-4">
-                <img class="img-thumbnail"/>
+                <?php
+                    echo "<img src=\"uploads/" . $_COOKIE["DE3UsernameCookie"] . "\" class=\"img-fluid img-thumbnail\"/>";
+                ?>
                 <form action="upload.php" method="post" enctype="multipart/form-data">
                   Select image to upload:
                   <input type="file" name="fileToUpload" id="fileToUpload">
@@ -21,7 +26,9 @@
                 </form>
             </div>
             <div class="col-md-8">
-                
+                <?php
+                    echo "username: " . $_COOKIE["DE3UsernameCookie"];
+                ?>
             </div>
         </div>
     </div>

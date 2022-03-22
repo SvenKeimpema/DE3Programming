@@ -15,13 +15,15 @@
       }
     }
     
+    unlink("uploads/" . $_COOKIE["DE3UsernameCookie"] . ".png");
+    
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        rename($target_file, "uploads/username");
+        rename($target_file, "uploads/" . $_COOKIE["DE3UsernameCookie"]);
         echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
     }
-//     echo '<script type="text/javascript">
-//             window.location = "https://de3-opdracht.000webhostapp.com/user.php"
-//           </script>';
-// 	die();
+    echo '<script type="text/javascript">
+            window.location = "https://de3-opdracht.000webhostapp.com/user.php"
+          </script>';
+	die();
     
 ?>
