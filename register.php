@@ -51,12 +51,12 @@
 	        echo "username or email found!";
 	    }
 
-        setcookie("DE3UsernameCookie", $username, time() + (86400 * 36555), "/");
-		setcookie("DE3EmailCookie", $email, time() + (86400 * 36555), "/");
-		setcookie("DE3PasswordCookie", $pass, time() + (86400 * 36555), "/");
+        setcookie("DE3UsernameCookie", $username);
+		setcookie("DE3EmailCookie", $email);
+		setcookie("DE3PasswordCookie", $pass);
 
 		echo '<script type="text/javascript">
-                window.location = "./index.html"
+                window.location = "./index.php"
               </script>';
     	die();
 	}

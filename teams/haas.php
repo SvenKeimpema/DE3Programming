@@ -68,7 +68,7 @@
       <center>
         <div class="">
           <img src="../images/haas/5.jpg" width="40%">
-          <img src="../images/haas/5.jpg" width="40%">
+          <img src="../images/haas/6.jpg" width="40%">
         </div>
       </center>
       <br>

@@ -68,7 +68,7 @@
             $comment = $_POST["comment"];
             $sql = "INSERT INTO cammond (username, comm) VALUES ('" . $_COOKIE["DE3UsernameCookie"] . "', '".$comment."')";
             if($conn->query($sql) === TRUE) {
-                echo "sql was succesfull";
+              $comment = null;
             }else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
