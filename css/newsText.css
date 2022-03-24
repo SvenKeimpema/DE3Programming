@@ -1,0 +1,13 @@
+p {
+    max-width: 800px;
+}
+
+.solid {
+    border-bottom: 1px solid grey;
+    width: 800px;
+    display: inline-block;
+}
+
+h4 {
+    display: inline-block;
+}
